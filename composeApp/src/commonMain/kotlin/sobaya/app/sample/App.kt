@@ -38,7 +38,7 @@ internal fun App() = AppTheme {
     Column(modifier = Modifier.fillMaxSize()) {
 
         Text(
-            text = "Login",
+            text = "てすと",
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(16.dp)
         )

@@ -16,8 +16,10 @@ ktor = "2.3.0"
 composeIcons = "1.1.0"
 kotlinx-serialization = "1.5.1"
 kotlinx-datetime = "0.4.0"
-koin = "3.4.0"
+koin = "3.4.1"
 sqlDelight = "2.0.0-alpha05"
+ktorFitPlugin = "1.0.0"
+kspVersion = "1.8.22-1.0.11"
 
 [libraries]
 
@@ -52,3 +54,5 @@ libres = { id = "io.github.skeptick.libres", version.ref = "libres" }
 buildConfig = { id = "com.github.gmazzo.buildconfig", version.ref = "buildConfig" }
 kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
+kspPlugin = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
+ktorfitPlugin = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorFitPlugin" }
