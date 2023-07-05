@@ -1,3 +1,6 @@
+include(":repository")
+
+
 rootProject.name = "Sample202307"
 include(":composeApp")
 
