@@ -1,15 +1,13 @@
 plugins {
     kotlin("multiplatform")
+    alias(libs.plugins.compose)
     id("com.android.library")
-    alias(libs.plugins.ktorfitPlugin)
-}
-
-configure<de.jensklingenberg.ktorfit.gradle.KtorfitGradleConfiguration> {
-    version = "1.4.1"
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
 kotlin {
+    targetHierarchy.default()
+
     android {
         compilations.all {
             kotlinOptions {
@@ -24,17 +22,21 @@ kotlin {
         iosSimulatorArm64()
     ).forEach {
         it.binaries.framework {
-            baseName = "repository"
+            baseName = "features"
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(libs.kotlinx.coroutines.core)
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
+                implementation(compose.material3)
+                implementation(libs.voyager.navigator)
                 implementation(libs.koin.core)
-                implementation(libs.ktor.core)
-                implementation(libs.kotlinx.serialization.json)
+
+                implementation(project(":repository"))
             }
         }
         val commonTest by getting {
@@ -46,7 +48,7 @@ kotlin {
 }
 
 android {
-    namespace = "sobaya.app.repository"
+    namespace = "sobaya.app.features"
     compileSdk = 33
     defaultConfig {
         minSdk = 21
