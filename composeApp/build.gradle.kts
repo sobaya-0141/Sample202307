@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.Packaging
+
 plugins {
     alias(libs.plugins.multiplatform)
     alias(libs.plugins.compose)
@@ -48,11 +50,12 @@ kotlin {
                 implementation(libs.composeImageLoader)
                 implementation(libs.kotlinx.coroutines.core)
                 implementation(libs.insetsx)
-                implementation(libs.ktor.core)
                 implementation(libs.composeIcons.featherIcons)
-                implementation(libs.kotlinx.serialization.json)
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.koin.core)
+
+                implementation(project(":features"))
+                implementation(project(":repository"))
             }
         }
 
@@ -103,7 +106,7 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-    packagingOptions {
+    fun Packaging.() {
         resources.excludes.add("META-INF/**")
     }
 }
