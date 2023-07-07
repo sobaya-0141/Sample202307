@@ -4,14 +4,16 @@ import android.app.Application
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import org.koin.core.context.GlobalContext
+import org.koin.core.context.startKoin
 import sobaya.app.repository.di.networkModule
+import org.koin.android.ext.koin.androidContext
 
 class AndroidApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        GlobalContext.startKoin {
+        startKoin {
+            androidContext(this@AndroidApp)
             modules(
                 networkModule,
             )

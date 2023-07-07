@@ -1,6 +1,5 @@
 package sobaya.app.features.main
 
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import cafe.adriel.voyager.core.model.ScreenModel
@@ -10,7 +9,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 import sobaya.app.repository.Sample
 
-class MainScreenModel() : ScreenModel, KoinComponent {
+class MainScreenModel : ScreenModel, KoinComponent {
 
     private val sample: Sample by inject()
     private val _data = mutableStateOf<String?>(null)
@@ -18,9 +17,9 @@ class MainScreenModel() : ScreenModel, KoinComponent {
 
     init {
         coroutineScope.launch {
-            _data.value = sample.Sample()
+            _data.value = sample.sample()
         }
     }
 
-    suspend fun getSample(): String = sample.Sample()
+    suspend fun getSample(): String = sample.sample()
 }
