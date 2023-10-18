@@ -17,8 +17,12 @@ struct iosApp: App {
 
 struct ContentView: View {
     var body: some View {
+        let test = MR.strings().test.desc().localized()
         Text(
             StringResourcesKt.getTestString().localized()
+        )
+        Text(
+            test
         )
     }
 }

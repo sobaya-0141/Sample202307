@@ -36,6 +36,7 @@ kotlin {
         framework {
             baseName = "ComposeApp"
             isStatic = true
+            export(libs.moko.resources)
         }
     }
 

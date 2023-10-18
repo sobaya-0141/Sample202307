@@ -63,3 +63,4 @@ kotlinx-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", vers
 sqlDelight = { id = "app.cash.sqldelight", version.ref = "sqlDelight" }
 kspPlugin = { id = "com.google.devtools.ksp", version.ref = "kspVersion" }
 ktorfitPlugin = { id = "de.jensklingenberg.ktorfit", version.ref = "ktorFitPlugin" }
+moko-resources = { id = "dev.icerock.mobile.multiplatform-resources" }
