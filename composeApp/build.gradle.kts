@@ -9,6 +9,7 @@ plugins {
     alias(libs.plugins.buildConfig)
     alias(libs.plugins.kotlinx.serialization)
     alias(libs.plugins.sqlDelight)
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 
 @OptIn(org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi::class)
@@ -22,8 +23,8 @@ kotlin {
         }
     }
 
-    iosX64()
     iosArm64()
+    iosX64()
     iosSimulatorArm64()
 
     cocoapods {
@@ -54,6 +55,9 @@ kotlin {
                 implementation(libs.kotlinx.datetime)
                 implementation(libs.koin.core)
 
+                api(libs.moko.resources)
+                api(libs.moko.resources.compose)
+
                 implementation(project(":features"))
                 implementation(project(":repository"))
             }
@@ -74,6 +78,8 @@ kotlin {
                 implementation(libs.ktor.client.okhttp)
                 implementation(libs.sqlDelight.driver.android)
                 implementation(libs.koin.android)
+
+                dependsOn(commonMain)
             }
         }
 
@@ -81,9 +87,14 @@ kotlin {
             dependencies {
                 implementation(libs.ktor.client.darwin)
                 implementation(libs.sqlDelight.driver.native)
+
+                dependsOn(commonMain)
             }
         }
+    }
 
+    multiplatformResources {
+        disableStaticFrameworkWarning = true
     }
 }
 
@@ -118,16 +129,21 @@ libres {
 }
 
 buildConfig {
-  // BuildConfig configuration here.
-  // https://github.com/gmazzo/gradle-buildconfig-plugin#usage-in-kts
+    // BuildConfig configuration here.
+    // https://github.com/gmazzo/gradle-buildconfig-plugin#usage-in-kts
 }
 
 sqldelight {
-  databases {
-    create("MyDatabase") {
-      // Database configuration here.
-      // https://cashapp.github.io/sqldelight
-      packageName.set("sobaya.app.sample.db")
+    databases {
+        create("MyDatabase") {
+            // Database configuration here.
+            // https://cashapp.github.io/sqldelight
+            packageName.set("sobaya.app.sample.db")
+        }
     }
-  }
+}
+
+multiplatformResources {
+    multiplatformResourcesPackage = "sobaya.app.sample"
+    iosBaseLocalizationRegion = "ja"
 }
