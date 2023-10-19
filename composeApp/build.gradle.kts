@@ -80,6 +80,9 @@ kotlin {
                 implementation(libs.sqlDelight.driver.android)
                 implementation(libs.koin.android)
 
+                api(libs.moko.resources)
+                api(libs.moko.resources.compose)
+
                 dependsOn(commonMain)
             }
         }
