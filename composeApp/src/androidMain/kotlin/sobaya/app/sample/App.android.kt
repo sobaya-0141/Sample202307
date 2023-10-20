@@ -37,7 +37,7 @@ class AppActivity : ComponentActivity() {
                 )
                 Text(
                     text = MR.strings.test.desc().toString(context = LocalContext.current),
-                    color = Color.White,
+                    color = Color.Blue,
                 )
             }
         }
